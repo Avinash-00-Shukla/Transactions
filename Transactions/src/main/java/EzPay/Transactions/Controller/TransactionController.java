@@ -5,8 +5,6 @@ import EzPay.Transactions.Model.TransactionMode;
 import EzPay.Transactions.Model.TransactionStatus;
 import EzPay.Transactions.Model.TransactionType;
 import EzPay.Transactions.Service.TransactionService;
-
-import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,8 +19,8 @@ public class TransactionController {
 	@GET
 	@Path("/test")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String testingController() {
-		return "Passed";
+	public Response testingController() { 
+	    return Response.ok("{\"message\": \"Connected\"}").build();
 	}
 
 	@GET
@@ -81,7 +79,7 @@ public class TransactionController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTransactionsByType(@QueryParam("type") String type) {
 		try {
-			TransactionType transactionType = TransactionType.valueOf(type);
+			TransactionType transactionType = TransactionType.valueOf(type.toUpperCase());
 			List<Transaction> transactions = transactionService.getTransactionsByType(transactionType);
 			return Response.ok(transactions).build();
 		} catch (Exception e) {
@@ -94,7 +92,7 @@ public class TransactionController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTransactionsByStatus(@QueryParam("status") String status) {
 		try {
-			TransactionStatus transactionStatus = TransactionStatus.valueOf(status);
+			TransactionStatus transactionStatus = TransactionStatus.valueOf(status.toUpperCase());
 			List<Transaction> transactions = transactionService.getTransactionsByStatus(transactionStatus);
 			return Response.ok(transactions).build();
 		} catch (Exception e) {
@@ -107,7 +105,7 @@ public class TransactionController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTransactionsByMode(@QueryParam("mode") String mode) {
 		try {
-			TransactionMode transactionMode = TransactionMode.valueOf(mode);
+			TransactionMode transactionMode = TransactionMode.valueOf(mode.toUpperCase());
 			List<Transaction> transactions = transactionService.getTransactionsByMode(transactionMode);
 			return Response.ok(transactions).build();
 		} catch (Exception e) {
