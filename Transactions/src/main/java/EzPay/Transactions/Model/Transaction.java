@@ -135,6 +135,22 @@ public class Transaction {
             throw new IllegalArgumentException("Invalid TransactionStatus: " + status);
         }
     }
+    
+    public String getSenderAccount() {
+        return senderAccount;
+    }
+
+    public void setSenderAccount(String senderAccount) {
+        this.senderAccount = senderAccount;
+    }
+
+    public String getRecieverAccount() {
+        return recieverAccount;
+    }
+
+    public void setRecieverAccount(String recieverAccount) {
+        this.recieverAccount = recieverAccount;
+    } 
 
     @Override
     public String toString() {
@@ -150,49 +166,5 @@ public class Transaction {
                 ", senderAccount='" + senderAccount + '\'' +
                 ", recieverAccount='" + recieverAccount + '\'' +
                 '}';
-    }
-
-    public String getSenderAccount() {
-        return senderAccount;
-    }
-
-    public void setSenderAccount(String senderAccount) {
-        this.senderAccount = senderAccount;
-    }
-
-    public String getRecieverAccount() {
-        return recieverAccount;
-    }
-
-    public void setRecieverAccount(String recieverAccount) {
-        this.recieverAccount = recieverAccount;
-    }
-
-    public void completeTransaction() {
-        this.status = TransactionStatus.SUCCESS;
-    }
-
-    public void failTransaction() {
-        this.status = TransactionStatus.FAILED;
-    }
-
-    public void cancelTransaction() {
-        this.status = TransactionStatus.CANCELLED;
-    }
-
-    public boolean isPending() {
-        return this.status == TransactionStatus.PENDING;
-    }
-
-    public boolean isCompleted() {
-        return this.status == TransactionStatus.SUCCESS;
-    }
-
-    public boolean isFailed() {
-        return this.status == TransactionStatus.FAILED;
-    }
-
-    public boolean isCancelled() {
-        return this.status == TransactionStatus.CANCELLED;
-    }
+    } 
 }

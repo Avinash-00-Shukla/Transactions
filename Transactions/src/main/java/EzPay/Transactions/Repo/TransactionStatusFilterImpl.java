@@ -8,9 +8,8 @@ import EzPay.Transactions.Model.TransactionStatus;
  
 import java.util.List;
 
-public class TransactionStatusFilterImpl implements TransactionStatusFilterDAO {
- 
-    @Override
+public class TransactionStatusFilterImpl {
+  
     public List<Transaction> getTransactionsByStatus(TransactionStatus status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Transaction> transactions = null;
